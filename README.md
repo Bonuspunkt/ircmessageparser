@@ -9,11 +9,16 @@ extracts styling information, urls and channels from a string.
 npm install ircmessageparser --save
 ```
 
-## how to use
+## api
 ``` js
 const parser = require('ircmessageparser');
+```
 
-// this will only extract style information
+### parseStyle(text)
+
+this will extract style information
+
+``` js
 const parsedStyle = parser.parseStyle('\x034#Test');
 console.log(parsed);
 /*
@@ -27,8 +32,15 @@ output: [{
     text: '#Test',
 }]
 */
+```
 
-// this will extract urls and channels
+### analyseText(text, [channelPrefixes])
+
+this will extract urls and channels
+
+`channelPrefixes` should be an array with RPL_ISUPPORT.CHANTYPES (ex. `['#', '&']`) defaults to `['#']`
+
+``` js
 const analysedText = parser.analyseText('#Test www.google.com http://test.org');
 console.log(analysedText);
 /*
@@ -52,13 +64,20 @@ output: [{
     link: 'http://test.org'
 }]
 */
+```
 
-// this will extract the styling, urls, and channels
-const parsed = parser.parse('\x034#Test');
+### parse(text, [channelPrefixes])
+
+this will extract the styling, urls, and channels
+
+`channelPrefixes` should be an array with RPL_ISUPPORT.CHANTYPES (ex. `['#', '&']`) defaults to `['#']`
+
+``` js
+const parsed = parser.parse('\x034$Test', ['$']);
 console.log(parsed);
 /*
 output: [{
-    channel: '#Test',
+    channel: '$Test',
     start: 0,
     end: 5,
     fragments: [{
@@ -68,7 +87,7 @@ output: [{
         reverse: false,
         italic: false,
         underline: false,
-        text: '#Test',
+        text: '$Test',
         start: 0,
         end: 5,
      }]

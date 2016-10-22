@@ -3,11 +3,25 @@ const parse = require('../lib/parse');
 
 describe('parse', () => {
     it('should work with urls', () => {
-        const input = '\x02irc\x0f://\x1dfreenode.net\x0f/\x034,8thelounge';
+        const input = '\x02 irc\x0f://\x1dfreenode.net\x0f/\x034,8nodejs ';
         const expected = [{
-            link: 'irc://freenode.net/thelounge',
             start: 0,
-            end: 28,
+            end: 1,
+            fragments: [{
+                bold: true,
+                textColor: undefined,
+                bgColor: undefined,
+                reverse: false,
+                italic: false,
+                underline: false,
+                text: ' ',
+                start: 0,
+                end: 1
+            }]
+        }, {
+            link: 'irc://freenode.net/nodejs',
+            start: 1,
+            end: 26,
             fragments: [{
                 bold: true,
                 textColor: undefined,
@@ -16,8 +30,8 @@ describe('parse', () => {
                 italic: false,
                 underline: false,
                 text: 'irc',
-                start: 0,
-                end: 3
+                start: 1,
+                end: 4
             }, {
                 bold: false,
                 textColor: undefined,
@@ -26,8 +40,8 @@ describe('parse', () => {
                 italic: false,
                 underline: false,
                 text: '://',
-                start: 3,
-                end: 6
+                start: 4,
+                end: 7
             }, {
                 bold: false,
                 textColor: undefined,
@@ -36,8 +50,8 @@ describe('parse', () => {
                 italic: true,
                 underline: false,
                 text: 'freenode.net',
-                start: 6,
-                end: 18
+                start: 7,
+                end: 19
             }, {
                 bold: false,
                 textColor: undefined,
@@ -46,8 +60,8 @@ describe('parse', () => {
                 italic: false,
                 underline: false,
                 text: '/',
-                start: 18,
-                end: 19
+                start: 19,
+                end: 20
             }, {
                 bold: false,
                 textColor: 4,
@@ -55,9 +69,23 @@ describe('parse', () => {
                 reverse: false,
                 italic: false,
                 underline: false,
-                text: 'thelounge',
-                start: 19,
-                end: 28
+                text: 'nodejs',
+                start: 20,
+                end: 26
+            }]
+        }, {
+            start: 26,
+            end: 27,
+            fragments: [{
+                bold: false,
+                textColor: 4,
+                bgColor: 8,
+                reverse: false,
+                italic: false,
+                underline: false,
+                text: ' ',
+                start: 26,
+                end: 27
             }]
         }];
 
