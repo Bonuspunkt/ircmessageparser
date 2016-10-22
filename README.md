@@ -1,6 +1,8 @@
 # irc message parser
-[![Build Status](https://travis-ci.org/Bonuspunkt/ircmessageparser.svg?branch=master)](https://travis-ci.org/Bonuspunkt/ircmessageparser) [![npm](https://img.shields.io/npm/v/ircmessageparser.svg)](https://www.npmjs.com/package/ircmessageparser)
-![license](https://img.shields.io/npm/l/ircmessageparser.svg)
+[![Build Status](https://travis-ci.org/Bonuspunkt/ircmessageparser.svg?branch=master)](https://travis-ci.org/Bonuspunkt/ircmessageparser)
+[![codecov.io](https://img.shields.io/codecov/c/github/Bonuspunkt/ircmessageparser.svg?branch=master)](https://codecov.io/gh/Bonuspunkt/ircmessageparser?branch=master)
+[![npm](https://img.shields.io/npm/v/ircmessageparser.svg)](https://www.npmjs.com/package/ircmessageparser)
+[![license](https://img.shields.io/npm/l/ircmessageparser.svg)](https://tldrlegal.com/license/-isc-license)
 
 extracts styling information, urls and channels from a string.
 
