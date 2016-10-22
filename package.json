@@ -1,0 +1,22 @@
+{
+  "name": "ircmessageparser",
+  "version": "1.0.0",
+  "description": "parses irc messages and extracts styling informations, urls and channels",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^3.8.1",
+    "mocha": "^3.1.2",
+    "npm-run-all": "^3.1.1"
+  },
+  "scripts": {
+    "test": "npm-run-all test:*",
+    "test:lint": "eslint .",
+    "test:mocha": "mocha"
+  },
+  "author": "Bonuspunkt",
+  "license": "ISC"
+}
