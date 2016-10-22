@@ -5,3 +5,6 @@ node_js:
 cache:
     directories:
     - node_modules # NPM packages
+
+after_success:
+    - bash <(curl -s https://codecov.io/bash)
