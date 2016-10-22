@@ -1,6 +1,6 @@
 {
   "name": "ircmessageparser",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "parses irc messages and extracts styling informations, urls and channels",
   "main": "index.js",
   "directories": {
@@ -20,5 +20,24 @@
     "test:coverage": "istanbul cover node_modules/mocha/bin/_mocha"
   },
   "author": "Bonuspunkt",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bonuspunkt/ircmessageparser.git"
+  },
+  "keywords": [
+    "irc",
+    "client",
+    "message",
+    "parser",
+    "color",
+    "bold",
+    "italic",
+    "underline",
+    "reverse"
+  ],
+  "bugs": {
+    "url": "https://github.com/Bonuspunkt/ircmessageparser/issues"
+  },
+  "homepage": "https://github.com/Bonuspunkt/ircmessageparser#readme"
 }
