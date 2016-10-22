@@ -1,4 +1,6 @@
-# irc message parser [![Build Status](https://travis-ci.org/Bonuspunkt/ircmessageparser.svg?branch=master)](https://travis-ci.org/Bonuspunkt/ircmessageparser)
+# irc message parser
+[![Build Status](https://travis-ci.org/Bonuspunkt/ircmessageparser.svg?branch=master)](https://travis-ci.org/Bonuspunkt/ircmessageparser) [![npm](https://img.shields.io/npm/v/ircmessageparser.svg)](https://www.npmjs.com/package/ircmessageparser)
+![license](https://img.shields.io/npm/l/ircmessageparser.svg)
 
 extracts styling information, urls and channels from a string.
 
