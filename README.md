@@ -1,4 +1,4 @@
-# irc message parser
+# irc message parser [![Build Status](https://travis-ci.org/Bonuspunkt/ircmessageparser.png)](https://travis-ci.org/Bonuspunkt/ircmessageparser)
 
 extracts styling information, urls and channels from a string.
 
