@@ -30,6 +30,7 @@ output: [{
 
 // this will extract urls and channels
 const analysedText = parser.analyseText('#Test www.google.com http://test.org');
+console.log(analysedText);
 /*
 output: [{
     start: 0,
