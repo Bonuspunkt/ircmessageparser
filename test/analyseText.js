@@ -88,6 +88,25 @@ describe('analyseText', () => {
         expect(actual).to.deep.equal(expected);
     });
 
+    it('should find urls with starting with www. and odd surroundings', () => {
+        const input = '.:www.github.com:.';
+        const expected = [{
+            start: 0,
+            end: 2
+        }, {
+            link: 'http://www.github.com',
+            start: 2,
+            end: 16
+        }, {
+            start: 16,
+            end: 18
+        }];
+
+        const actual = analyseText(input);
+
+        expect(actual).to.deep.equal(expected);
+    });
+
 
     it('should not find urls', () => {
         const input = 'text www. text';
@@ -187,6 +206,19 @@ describe('analyseText', () => {
         }];
 
         const actual = analyseText(input);
+
+        expect(actual).to.deep.equal(expected);
+    });
+
+    it('should work with custom channelPrefixes', () => {
+        const input = '@a';
+        const expected = [{
+            channel: '@a',
+            start: 0,
+            end: 2
+        }];
+
+        const actual = analyseText(input, ['@']);
 
         expect(actual).to.deep.equal(expected);
     });
