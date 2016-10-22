@@ -17,7 +17,6 @@
   "scripts": {
     "test": "npm-run-all test:*",
     "test:lint": "eslint .",
-    "test:mocha": "mocha",
     "test:coverage": "istanbul cover node_modules/mocha/bin/_mocha"
   },
   "author": "Bonuspunkt",
