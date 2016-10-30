@@ -223,4 +223,29 @@ describe('analyseText', () => {
         expect(actual).to.deep.equal(expected);
     });
 
+    it('should handle multiple channelPrefix correctly', () => {
+        const input = '##test';
+        const expected = [{
+            channel: '##test',
+            start: 0,
+            end: 6
+        }];
+
+        const actual = analyseText(input);
+
+        expect(actual).to.deep.equal(expected);
+    });
+
+    it('should handle multiple www. correctly', () => {
+        const input = 'www.www.test.com';
+        const expected = [{
+            link: 'http://www.www.test.com',
+            start: 0,
+            end: 16
+        }];
+
+        const actual = analyseText(input);
+
+        expect(actual).to.deep.equal(expected);
+    });
 });
