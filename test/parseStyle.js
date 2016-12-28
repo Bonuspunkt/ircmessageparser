@@ -20,6 +20,23 @@ describe('parseStyle', () => {
         expect(actual).to.deep.equal(expected);
     });
 
+    it('should not skip control codes when parameter `stripControlCodes` is set to false', () => {
+        const input = 'text\x01with\x04control\x05codes';
+        const expected = [{
+            bold: false,
+            textColor: undefined,
+            bgColor: undefined,
+            reverse: false,
+            italic: false,
+            underline: false,
+            text: 'text\x01with\x04control\x05codes'
+        }];
+
+        const actual = parseStyle(input, false);
+
+        expect(actual).to.deep.equal(expected);
+    });
+
     it('should parse bold', () => {
         const input = '\x02bold';
         const expected = [{
