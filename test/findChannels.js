@@ -82,6 +82,19 @@ describe('findChannels', () => {
         expect(actual).to.deep.equal(expected);
     });
 
+    it('should work with IRCv3.1 multi-prefix', () => {
+        const input = '!@%+#a';
+        const expected = [{
+            channel: '#a',
+            start: 4,
+            end: 6
+        }];
+
+        const actual = analyseText(input, ['#'], ['!', '@', '%', '+']);
+
+        expect(actual).to.deep.equal(expected);
+    });
+
     it('should work with custom channelPrefixes', () => {
         const input = '@a';
         const expected = [{
