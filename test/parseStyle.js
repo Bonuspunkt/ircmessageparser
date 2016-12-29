@@ -218,7 +218,7 @@ describe('parseStyle', () => {
         expect(actual).to.deep.equal(expected);
     });
 
-    it('reset should reset all styles', () => {
+    it('should reset all styles', () => {
         const input = '\x02\x034\x16\x1d\x1ffull\x0fnone';
         const expected = [{
             bold: true,
@@ -249,4 +249,23 @@ describe('parseStyle', () => {
         expect(actual).to.deep.equal(expected);
     });
 
+    it('should optimize fragments', () => {
+        const input = '\x031\x031,2\x031\x031,2\x031\x031,2\x03a';
+        const expected = [{
+            bold: false,
+            textColor: undefined,
+            bgColor: undefined,
+            reverse: false,
+            italic: false,
+            underline: false,
+            text: 'a',
+
+            start: 0,
+            end: 1
+        }];
+
+        const actual = parseStyle(input);
+
+        expect(actual).to.deep.equal(expected);
+    });
 });
