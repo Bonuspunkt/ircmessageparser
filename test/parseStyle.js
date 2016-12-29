@@ -249,7 +249,7 @@ describe('parseStyle', () => {
         expect(actual).to.deep.equal(expected);
     });
 
-    it('should optimize fragments', () => {
+    it('should not emit empty fragments', () => {
         const input = '\x031\x031,2\x031\x031,2\x031\x031,2\x03a';
         const expected = [{
             bold: false,
@@ -262,6 +262,28 @@ describe('parseStyle', () => {
 
             start: 0,
             end: 1
+        }];
+
+        const actual = parseStyle(input);
+
+        expect(actual).to.deep.equal(expected);
+    });
+
+    it('should optimize fragments', () => {
+        const rawString = 'oh hi test text';
+        const colorCode = '\x0312';
+        const input = colorCode + rawString.split('').join(colorCode);
+        const expected = [{
+            bold: false,
+            textColor: 12,
+            bgColor: undefined,
+            reverse: false,
+            italic: false,
+            underline: false,
+            text: rawString,
+
+            start: 0,
+            end: rawString.length
         }];
 
         const actual = parseStyle(input);
