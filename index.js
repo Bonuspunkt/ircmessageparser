@@ -1,5 +1,7 @@
 module.exports = {
     parseStyle: require('./lib/parseStyle'),
-    analyseText: require('./lib/analyseText'),
+    findChannels: require('./lib/findChannels'),
+    findLinks: require('./lib/findLinks'),
+    merge: require('./lib/merge'),
     parse: require('./lib/parse')
 };

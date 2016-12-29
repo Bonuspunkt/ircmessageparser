@@ -12,10 +12,33 @@ describe('parseStyle', () => {
             reverse: false,
             italic: false,
             underline: false,
-            text: 'textwithcontrolcodes'
+            text: 'textwithcontrolcodes',
+
+            start: 0,
+            end: 20
         }];
 
         const actual = parseStyle(input);
+
+        expect(actual).to.deep.equal(expected);
+    });
+
+    it('should not skip control codes when parameter `stripControlCodes` is set to false', () => {
+        const input = 'text\x01with\x04control\x05codes';
+        const expected = [{
+            bold: false,
+            textColor: undefined,
+            bgColor: undefined,
+            reverse: false,
+            italic: false,
+            underline: false,
+            text: 'text\x01with\x04control\x05codes',
+
+            start: 0,
+            end: 23
+        }];
+
+        const actual = parseStyle(input, false);
 
         expect(actual).to.deep.equal(expected);
     });
@@ -29,7 +52,10 @@ describe('parseStyle', () => {
             reverse: false,
             italic: false,
             underline: false,
-            text: 'bold'
+            text: 'bold',
+
+            start: 0,
+            end: 4
         }];
 
         const actual = parseStyle(input);
@@ -46,7 +72,10 @@ describe('parseStyle', () => {
             reverse: false,
             italic: false,
             underline: false,
-            text: 'yellowText'
+            text: 'yellowText',
+
+            start: 0,
+            end: 10
         }];
 
         const actual = parseStyle(input);
@@ -63,7 +92,10 @@ describe('parseStyle', () => {
             reverse: false,
             italic: false,
             underline: false,
-            text: 'yellowBG redText'
+            text: 'yellowBG redText',
+
+            start: 0,
+            end: 16
         }];
 
         const actual = parseStyle(input);
@@ -80,7 +112,10 @@ describe('parseStyle', () => {
             reverse: false,
             italic: true,
             underline: false,
-            text: 'italic'
+            text: 'italic',
+
+            start: 0,
+            end: 6
         }];
 
         const actual = parseStyle(input);
@@ -97,7 +132,10 @@ describe('parseStyle', () => {
             reverse: false,
             italic: false,
             underline: false,
-            text: 'bold'
+            text: 'bold',
+
+            start: 0,
+            end: 4
         }, {
             bold: true,
             textColor: 8,
@@ -105,7 +143,10 @@ describe('parseStyle', () => {
             reverse: false,
             italic: false,
             underline: false,
-            text: 'yellow'
+            text: 'yellow',
+
+            start: 4,
+            end: 10
         }, {
             bold: false,
             textColor: 8,
@@ -113,7 +154,10 @@ describe('parseStyle', () => {
             reverse: false,
             italic: false,
             underline: false,
-            text: 'nonBold'
+            text: 'nonBold',
+
+            start: 10,
+            end: 17
         }, {
             bold: false,
             textColor: undefined,
@@ -121,7 +165,10 @@ describe('parseStyle', () => {
             reverse: false,
             italic: false,
             underline: false,
-            text: 'default'
+            text: 'default',
+
+            start: 17,
+            end: 24
         }];
 
         const actual = parseStyle(input);
@@ -138,7 +185,10 @@ describe('parseStyle', () => {
             reverse: false,
             italic: false,
             underline: false,
-            text: 'bold'
+            text: 'bold',
+
+            start: 0,
+            end: 4
         }, {
             bold: false,
             textColor: undefined,
@@ -146,7 +196,10 @@ describe('parseStyle', () => {
             reverse: false,
             italic: false,
             underline: false,
-            text: ' '
+            text: ' ',
+
+            start: 4,
+            end: 5
         }, {
             bold: true,
             textColor: undefined,
@@ -154,7 +207,10 @@ describe('parseStyle', () => {
             reverse: false,
             italic: false,
             underline: false,
-            text: 'bold'
+            text: 'bold',
+
+            start: 5,
+            end: 9
         }];
 
         const actual = parseStyle(input);
@@ -171,7 +227,10 @@ describe('parseStyle', () => {
             reverse: true,
             italic: true,
             underline: true,
-            text: 'full'
+            text: 'full',
+
+            start: 0,
+            end: 4
         }, {
             bold: false,
             textColor: undefined,
@@ -179,7 +238,10 @@ describe('parseStyle', () => {
             reverse: false,
             italic: false,
             underline: false,
-            text: 'none'
+            text: 'none',
+
+            start: 4,
+            end: 8
         }];
 
         const actual = parseStyle(input);
