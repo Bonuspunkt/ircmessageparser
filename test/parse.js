@@ -2,6 +2,7 @@ const expect = require('chai').expect;
 const parse = require('../lib/parse');
 
 describe('parse', () => {
+
     it('should work with urls', () => {
         const input = '\x02 irc\x0f://\x1dfreenode.net\x0f/\x034,8nodejs ';
         const expected = [{
@@ -127,4 +128,45 @@ describe('parse', () => {
 
         expect(actual).to.deep.equal(expected);
     });
+
+    it('should optimize', () => {
+        const input = 'test \x0312#\x0312\x0312"te\x0312st\x0312\x0312\x0312\x0312\x0312\x0312a';
+        const expected = [{
+            start: 0,
+            end: 5,
+            fragments: [{
+                bold: false,
+                textColor: undefined,
+                bgColor: undefined,
+                reverse: false,
+                italic: false,
+                text: 'test ',
+                underline: false,
+
+                start: 0,
+                end: 5,
+            }]
+        }, {
+            channel: '#"testa',
+            start: 5,
+            end: 12,
+            fragments: [{
+                bold: false,
+                textColor: 12,
+                bgColor: undefined,
+                reverse: false,
+                italic: false,
+                underline: false,
+                text: '#"testa',
+
+                start: 5,
+                end: 12,
+            }]
+        }];
+
+        const actual = parse(input);
+
+        expect(actual).to.deep.equal(expected);
+    });
+
 });

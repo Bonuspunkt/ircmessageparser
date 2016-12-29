@@ -3,12 +3,12 @@ const anyIntersection = require('../lib/anyIntersection');
 
 describe('anyIntersection', () => {
 
-    it('should intersect on edges', () => {
+    it('should not intersect on edges', () => {
         const a = { start: 1, end: 2 };
         const b = { start: 2, end: 3 };
 
-        expect(anyIntersection(a, b)).to.equal(true);
-        expect(anyIntersection(b, a)).to.equal(true);
+        expect(anyIntersection(a, b)).to.equal(false);
+        expect(anyIntersection(b, a)).to.equal(false);
     });
 
     it('should intersect on overlapping', () => {
