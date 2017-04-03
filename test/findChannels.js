@@ -95,6 +95,15 @@ describe('findChannels', () => {
         expect(actual).to.deep.equal(expected);
     });
 
+    it('should not match duplicte prefix', () => {
+        const input = '@@#a';
+        const expected = [];
+
+        const actual = analyseText(input);
+
+        expect(actual).to.deep.equal(expected);
+    });
+
     it('should work with custom channelPrefixes', () => {
         const input = '@a';
         const expected = [{
