@@ -1,6 +1,6 @@
 {
   "name": "ircmessageparser",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "parses irc messages and extracts styling informations, urls and channels",
   "main": "index.js",
   "directories": {
