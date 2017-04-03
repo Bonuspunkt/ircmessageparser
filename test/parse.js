@@ -1,5 +1,6 @@
 const expect = require('chai').expect;
 const parse = require('../lib/parse');
+const anyIntersection = require('../lib/anyIntersection');
 
 describe('parse', () => {
 
@@ -167,6 +168,14 @@ describe('parse', () => {
         const actual = parse(input);
 
         expect(actual).to.deep.equal(expected);
+    });
+
+    it('should not overlap parts', () => {
+        const input = 'Url: http://example.com/path Channel: ##channel';
+        const actual = parse(input);
+
+        const hasIntersection = actual.some(a => actual.some(b => a !== b && anyIntersection(a, b)));
+        expect(hasIntersection).to.equal(false);
     });
 
 });
