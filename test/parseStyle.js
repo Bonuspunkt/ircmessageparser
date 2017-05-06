@@ -4,11 +4,13 @@ const parseStyle = require('../lib/parseStyle');
 describe('parseStyle', () => {
 
     it('should skip control codes', () => {
-        const input = 'text\x01with\x04control\x05codes';
+        const input = 'text\x01with\x05control\x06codes';
         const expected = [{
             bold: false,
             textColor: undefined,
             bgColor: undefined,
+            hexTextColor: undefined,
+            hexBgColor: undefined,
             reverse: false,
             italic: false,
             underline: false,
@@ -24,15 +26,17 @@ describe('parseStyle', () => {
     });
 
     it('should not skip control codes when parameter `stripControlCodes` is set to false', () => {
-        const input = 'text\x01with\x04control\x05codes';
+        const input = 'text\x01with\x05control\x06codes';
         const expected = [{
             bold: false,
             textColor: undefined,
             bgColor: undefined,
+            hexTextColor: undefined,
+            hexBgColor: undefined,
             reverse: false,
             italic: false,
             underline: false,
-            text: 'text\x01with\x04control\x05codes',
+            text: 'text\x01with\x05control\x06codes',
 
             start: 0,
             end: 23
@@ -49,6 +53,8 @@ describe('parseStyle', () => {
             bold: true,
             textColor: undefined,
             bgColor: undefined,
+            hexTextColor: undefined,
+            hexBgColor: undefined,
             reverse: false,
             italic: false,
             underline: false,
@@ -69,6 +75,8 @@ describe('parseStyle', () => {
             bold: false,
             textColor: 8,
             bgColor: undefined,
+            hexTextColor: undefined,
+            hexBgColor: undefined,
             reverse: false,
             italic: false,
             underline: false,
@@ -88,6 +96,8 @@ describe('parseStyle', () => {
         const expected = [{
             textColor: 4,
             bgColor: 8,
+            hexTextColor: undefined,
+            hexBgColor: undefined,
             bold: false,
             reverse: false,
             italic: false,
@@ -108,6 +118,8 @@ describe('parseStyle', () => {
         const expected = [{
             textColor: 1,
             bgColor: 2,
+            hexTextColor: undefined,
+            hexBgColor: undefined,
             bold: false,
             reverse: false,
             italic: false,
@@ -119,6 +131,8 @@ describe('parseStyle', () => {
         }, {
             textColor: 3,
             bgColor: 2,
+            hexTextColor: undefined,
+            hexBgColor: undefined,
             bold: false,
             reverse: false,
             italic: false,
@@ -140,6 +154,8 @@ describe('parseStyle', () => {
             bold: false,
             textColor: undefined,
             bgColor: undefined,
+            hexTextColor: undefined,
+            hexBgColor: undefined,
             reverse: false,
             italic: true,
             underline: false,
@@ -160,6 +176,8 @@ describe('parseStyle', () => {
             bold: true,
             textColor: undefined,
             bgColor: undefined,
+            hexTextColor: undefined,
+            hexBgColor: undefined,
             reverse: false,
             italic: false,
             underline: false,
@@ -171,6 +189,8 @@ describe('parseStyle', () => {
             bold: true,
             textColor: 8,
             bgColor: undefined,
+            hexTextColor: undefined,
+            hexBgColor: undefined,
             reverse: false,
             italic: false,
             underline: false,
@@ -182,6 +202,8 @@ describe('parseStyle', () => {
             bold: false,
             textColor: 8,
             bgColor: undefined,
+            hexTextColor: undefined,
+            hexBgColor: undefined,
             reverse: false,
             italic: false,
             underline: false,
@@ -193,6 +215,8 @@ describe('parseStyle', () => {
             bold: false,
             textColor: undefined,
             bgColor: undefined,
+            hexTextColor: undefined,
+            hexBgColor: undefined,
             reverse: false,
             italic: false,
             underline: false,
@@ -213,6 +237,8 @@ describe('parseStyle', () => {
             bold: true,
             textColor: undefined,
             bgColor: undefined,
+            hexTextColor: undefined,
+            hexBgColor: undefined,
             reverse: false,
             italic: false,
             underline: false,
@@ -224,6 +250,8 @@ describe('parseStyle', () => {
             bold: false,
             textColor: undefined,
             bgColor: undefined,
+            hexTextColor: undefined,
+            hexBgColor: undefined,
             reverse: false,
             italic: false,
             underline: false,
@@ -235,6 +263,8 @@ describe('parseStyle', () => {
             bold: true,
             textColor: undefined,
             bgColor: undefined,
+            hexTextColor: undefined,
+            hexBgColor: undefined,
             reverse: false,
             italic: false,
             underline: false,
@@ -250,11 +280,13 @@ describe('parseStyle', () => {
     });
 
     it('should reset all styles', () => {
-        const input = '\x02\x034\x16\x1d\x1ffull\x0fnone';
+        const input = '\x02\x034\x04012345,6789AB\x16\x1d\x1ffull\x0fnone';
         const expected = [{
             bold: true,
             textColor: 4,
             bgColor: undefined,
+            hexTextColor: '012345',
+            hexBgColor: '6789AB',
             reverse: true,
             italic: true,
             underline: true,
@@ -266,6 +298,8 @@ describe('parseStyle', () => {
             bold: false,
             textColor: undefined,
             bgColor: undefined,
+            hexTextColor: undefined,
+            hexBgColor: undefined,
             reverse: false,
             italic: false,
             underline: false,
@@ -286,6 +320,8 @@ describe('parseStyle', () => {
             bold: false,
             textColor: undefined,
             bgColor: undefined,
+            hexTextColor: undefined,
+            hexBgColor: undefined,
             reverse: false,
             italic: false,
             underline: false,
@@ -308,6 +344,8 @@ describe('parseStyle', () => {
             bold: false,
             textColor: 12,
             bgColor: undefined,
+            hexTextColor: undefined,
+            hexBgColor: undefined,
             reverse: false,
             italic: false,
             underline: false,
@@ -321,4 +359,40 @@ describe('parseStyle', () => {
 
         expect(actual).to.deep.equal(expected);
     });
+
+    it('should parse hex textColor and background', () => {
+        const input = '\x04C0FFEE,BAD5ADtext\x04reset';
+        const expected = [{
+            textColor: undefined,
+            bgColor: undefined,
+            hexTextColor: 'C0FFEE',
+            hexBgColor: 'BAD5AD',
+            bold: false,
+            reverse: false,
+            italic: false,
+            underline: false,
+            text: 'text',
+
+            start: 0,
+            end: 4
+        }, {
+            textColor: undefined,
+            bgColor: undefined,
+            hexTextColor: undefined,
+            hexBgColor: undefined,
+            bold: false,
+            reverse: false,
+            italic: false,
+            underline: false,
+            text: 'reset',
+
+            start: 4,
+            end: 9
+        }];
+
+        const actual = parseStyle(input);
+
+        expect(actual).to.deep.equal(expected);
+    });
+
 });
