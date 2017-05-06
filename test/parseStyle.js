@@ -108,8 +108,6 @@ describe('parseStyle', () => {
         const expected = [{
             textColor: 1,
             bgColor: 2,
-            hexTextColor: undefined,
-            hexBgColor: undefined,
             bold: false,
             reverse: false,
             italic: false,
@@ -121,8 +119,6 @@ describe('parseStyle', () => {
         }, {
             textColor: 3,
             bgColor: 2,
-            hexTextColor: undefined,
-            hexBgColor: undefined,
             bold: false,
             reverse: false,
             italic: false,
