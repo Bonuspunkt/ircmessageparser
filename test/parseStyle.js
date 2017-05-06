@@ -119,7 +119,7 @@ describe('parseStyle', () => {
             textColor: undefined,
             bgColor: undefined,
             hexTextColor: 'C0FFEE',
-            hexBgColor: 'BADBAD',
+            hexBgColor: 'BAD5AD',
             bold: false,
             reverse: false,
             italic: false,
