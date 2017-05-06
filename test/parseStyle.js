@@ -114,7 +114,7 @@ describe('parseStyle', () => {
     });
 
     it('should parse hex textColor and background', () => {
-        const input = '\x04C0FFEE,BAD5ADtext';
+        const input = '\x04C0FFEE,BAD5ADtext\x04reset';
         const expected = [{
             textColor: undefined,
             bgColor: undefined,
@@ -128,6 +128,19 @@ describe('parseStyle', () => {
 
             start: 0,
             end: 4
+        }, {
+            textColor: undefined,
+            bgColor: undefined,
+            hexTextColor: undefined,
+            hexBgColor: undefined,
+            bold: false,
+            reverse: false,
+            italic: false,
+            underline: false,
+            text: 'reset',
+
+            start: 4,
+            end: 9
         }];
 
         const actual = parseStyle(input);
