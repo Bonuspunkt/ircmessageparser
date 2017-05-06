@@ -103,6 +103,37 @@ describe('parseStyle', () => {
         expect(actual).to.deep.equal(expected);
     });
 
+    it('should keep bg color when only text color is set', () => {
+        const input = '\x031,2 text \x033 newColor';
+        const expected = [{
+            textColor: 1,
+            bgColor: 2,
+            bold: false,
+            reverse: false,
+            italic: false,
+            underline: false,
+            text: ' text ',
+
+            start: 0,
+            end: 6
+        }, {
+            textColor: 3,
+            bgColor: 2,
+            bold: false,
+            reverse: false,
+            italic: false,
+            underline: false,
+            text: ' newColor',
+
+            start: 6,
+            end: 15
+        }];
+
+        const actual = parseStyle(input);
+
+        expect(actual).to.deep.equal(expected);
+    });
+
     it('should parse italic', () => {
         const input = '\x1ditalic';
         const expected = [{
