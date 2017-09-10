@@ -1,4 +1,6 @@
 # irc message parser
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/Bonuspunkt/ircmessageparser.svg)](https://greenkeeper.io/)
 [![Build Status](https://travis-ci.org/Bonuspunkt/ircmessageparser.svg?branch=master)](https://travis-ci.org/Bonuspunkt/ircmessageparser)
 [![codecov.io](https://img.shields.io/codecov/c/github/Bonuspunkt/ircmessageparser.svg?branch=master)](https://codecov.io/gh/Bonuspunkt/ircmessageparser?branch=master)
 [![npm](https://img.shields.io/npm/v/ircmessageparser.svg)](https://www.npmjs.com/package/ircmessageparser)
