@@ -200,4 +200,30 @@ describe('parse', () => {
         expect(hasIntersection).to.equal(false);
     });
 
+    it('should handle overlapping parts by using first starting', () => {
+        const input = '#test-https://google.com';
+        const expected = [{
+            channel: '#test-https://google.com',
+            start: 0,
+            end: 24,
+            fragments: [{
+                bold: false,
+                textColor: undefined,
+                bgColor: undefined,
+                hexTextColor: undefined,
+                hexBgColor: undefined,
+                reverse: false,
+                italic: false,
+                text: '#test-https://google.com',
+                underline: false,
+
+                start: 0,
+                end: 24,
+            }]
+        }];
+        const actual = parse(input);
+
+        expect(actual).to.deep.equal(expected);
+    });
+
 });
