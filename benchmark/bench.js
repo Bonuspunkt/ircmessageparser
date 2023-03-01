@@ -29,15 +29,15 @@ function measure(name, array, fn) {
     const duration = (' '.repeat(6) + (end - start)).slice(-6);
     const op = (' '.repeat(6) + numberFormat.format(duration / result.length * 1000)).slice(-6);
 
-    console.log(`  - ${ name } ${ duration }ms / ${ op }µs/op`);
+    console.log(`  - ${name} ${duration}ms / ${op}µs/op`);
 
     return result;
 }
 
 function benchmark(inputString) {
-    console.log(`"${ inputString }"`);
+    console.log(`"${inputString}"`);
 
-    const input = Array.from(' '.repeat(1e4)).map(_ => inputString);
+    const input = Array.from(' '.repeat(1e4)).map(() => inputString);
 
     const fragments = measure('parseStyle', input, parseStyle);
 

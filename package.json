@@ -7,20 +7,18 @@
     "test": "test"
   },
   "dependencies": {
-    "escape-string-regexp": "^1.0.5"
+    "escape-string-regexp": "^4.0.0"
   },
   "devDependencies": {
-    "chai": "^4.1.2",
-    "eslint": "^4.11.0",
-    "istanbul": "^0.4.5",
-    "mocha": "^4.0.1",
-    "npm-run-all": "^4.1.2"
+    "eslint": "^8.35.0",
+    "eslint-plugin-jest": "^27.2.1",
+    "jest": "^29.4.3",
+    "npm-run-all": "^4.1.5"
   },
   "scripts": {
-    "mocha": "mocha",
     "test": "npm-run-all test:*",
     "test:lint": "eslint .",
-    "test:coverage": "istanbul cover node_modules/mocha/bin/_mocha"
+    "test:jest": "jest"
   },
   "author": "Bonuspunkt",
   "license": "ISC",
